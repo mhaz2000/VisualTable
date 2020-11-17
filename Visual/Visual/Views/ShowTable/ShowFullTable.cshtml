@@ -1,0 +1,48 @@
+﻿@using Visual.DTOs
+@model ShowTableDto
+@{
+    ViewBag.Title = "ShowFullTable";
+}
+
+<h2>ShowFullTable</h2>
+
+<div dir="rtl">
+    @using (Html.BeginForm("ShowFullTable", "ShowTable", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.DropDownListFor(model => model.ChosenName, new SelectList(Model.TableNames), "نام جدول را انتخاب نمایید",
+            new { onchange = "this.form.submit();", @class = "form-control", value = Model.ChosenName })
+
+    }
+</div>
+
+@if (!(Model.Values is null))
+{
+    int count = 0;
+    <table class="table">
+        @foreach (var item in Model.Values)
+        {
+            if (count == 0)
+            {
+                <tr>
+                    @foreach (var names in item)
+                    {
+                        <th>
+                            @names
+                        </th>
+
+                    }
+                </tr>
+                count++;
+            }
+            else
+            {
+                <tr>
+                    @foreach (var value in item)
+                    {
+                        <td>@value</td>
+                    }
+                </tr>
+            }
+        }
+    </table>
+}
