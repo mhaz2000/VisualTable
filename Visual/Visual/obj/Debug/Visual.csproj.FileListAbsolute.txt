@@ -81,3 +81,5 @@ C:\Users\asus\Desktop\me\C#\Visual\Visual\Visual\obj\Debug\Visual.csproj.CoreCom
 C:\Users\asus\Desktop\me\C#\Visual\Visual\Visual\obj\Debug\Visual.csproj.CopyComplete
 C:\Users\asus\Desktop\me\C#\Visual\Visual\Visual\obj\Debug\Visual.dll
 C:\Users\asus\Desktop\me\C#\Visual\Visual\Visual\obj\Debug\Visual.pdb
+C:\Users\asus\Desktop\me\C#\Visual\Visual\Visual\bin\Ninject.dll
+C:\Users\asus\Desktop\me\C#\Visual\Visual\Visual\bin\Ninject.xml

@@ -14,9 +14,9 @@ namespace Visual.Controllers
         private readonly ICreationService _service;
 
         //make an instance of our service.
-        public CreateTableController()
+        public CreateTableController(ICreationService service)
         {
-            _service = new CreationService();
+            _service = service;
         }
         // GET: CreateTable
         public ActionResult CreateTable()

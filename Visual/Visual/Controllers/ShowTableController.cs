@@ -14,9 +14,9 @@ namespace Visual.Controllers
         private readonly IShowTableService _servcie;
 
         //maje an instance of our service
-        public ShowTableController()
+        public ShowTableController(IShowTableService service)
         {
-            _servcie = new ShowTableService();
+            _servcie = service;
         }
 
         // GET: Show full Table

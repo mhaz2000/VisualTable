@@ -11,18 +11,18 @@ namespace Visual.Controllers
     public class AddValueController : Controller
     {
         //A srevice for adding operations
-        private readonly IAddValueTableService service;
+        private readonly IAddValueTableService _service;
 
         //create an instance of the service
-        public AddValueController()
+        public AddValueController(IAddValueTableService service)
         {
-            service = new AddValueTableService();
+            _service = service;
         }
         // GET: AddValue
 
         public ActionResult AddValue()
         {
-            return View(new AddNewValueDto(service.GetAllTableName()));
+            return View(new AddNewValueDto(_service.GetAllTableName()));
         }
 
         [HttpPost]
@@ -33,12 +33,12 @@ namespace Visual.Controllers
                 return View();
             else if (table.FieldValues is null)
             {
-                table.FieldNames = service.GetAllFieldNames(table.ChosenName);
-                table.TableNames = service.GetAllTableName();
+                table.FieldNames = _service.GetAllFieldNames(table.ChosenName);
+                table.TableNames = _service.GetAllTableName();
                 return View(table);
             }
 
-            service.AddValueToTable(table);
+            _service.AddValueToTable(table);
             return RedirectToAction("Index", "Home");
         }
     }

@@ -7,7 +7,7 @@ using Visual.DTOs;
 
 namespace Visual.Services.TableCreationService
 {
-    interface ICreationService
+    public interface ICreationService
     {
         List<string> GetAllTableNames();
         TableStructionDto CheckNewTable(TableStructionDto tableStruction);

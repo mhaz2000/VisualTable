@@ -7,7 +7,7 @@ using Visual.DTOs;
 
 namespace Visual.Services.TableShowingService
 {
-    interface IShowTableService
+    public interface IShowTableService
     {
         List<string> GetAllTableNames();
         ShowTableDto GetFullTable(ShowTableDto table);

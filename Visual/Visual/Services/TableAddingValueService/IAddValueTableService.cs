@@ -7,7 +7,7 @@ using Visual.DTOs;
 
 namespace Visual.Services.TableAddingValueService
 {
-    interface IAddValueTableService
+    public interface IAddValueTableService
     {
         List<string> GetAllTableName();
         Guid[] GetAllFieldNamesID(string tableName);
