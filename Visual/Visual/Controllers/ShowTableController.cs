@@ -19,12 +19,13 @@ namespace Visual.Controllers
             _servcie = new ShowTableService();
         }
 
-        // GET: ShowTable
+        // GET: Show full Table
         public ActionResult ShowFullTable()
         {
             return View(new ShowTableDto(_servcie.GetAllTableNames()));
+        
         }
-
+         
         [HttpPost]
         public ActionResult ShowFullTable([Bind(Include = "ChosenName")] ShowTableDto table)
         {
