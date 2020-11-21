@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Visual.DTOs;
-using Visual.Services.TableAddingValueService;
+using Common.DTOs;
+using Services.AddValueToTableService;
 
 namespace Visual.Controllers
 {
     public class AddValueController : Controller
     {
         //A srevice for adding operations
-        private readonly IAddValueTableService _service;
+        private readonly IAddingService _service;
 
         //create an instance of the service
-        public AddValueController(IAddValueTableService service)
+        public AddValueController(IAddingService service)
         {
             _service = service;
         }
@@ -22,19 +22,19 @@ namespace Visual.Controllers
 
         public ActionResult AddValue()
         {
-            return View(new AddNewValueDto(_service.GetAllTableName()));
+            return View(new AddValueDto(_service.GetTableNames()));
         }
 
         [HttpPost]
-        public ActionResult AddValue([Bind(Include = "ChosenName,FieldValues")] AddNewValueDto table)
+        public ActionResult AddValue([Bind(Include = "ChosenName,FieldValues")] AddValueDto table)
         {
             //Check if users choose a table name or not.
             if (table.ChosenName is null)
                 return View();
             else if (table.FieldValues is null)
             {
-                table.FieldNames = _service.GetAllFieldNames(table.ChosenName);
-                table.TableNames = _service.GetAllTableName();
+                table.FieldNames = _service.GetTableFieldNames(table);
+                table.TableNames = _service.GetTableNames();
                 return View(table);
             }
 

@@ -5,9 +5,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using Visual.Services.TableAddingValueService;
-using Visual.Services.TableCreationService;
-using Visual.Services.TableShowingService;
+using Services.ShowingTableService;
+using Services.CreatingTableService;
+using Services.AddValueToTableService;
+using Data.DataUnitOfWork;
+
 
 namespace Visual.Controllers
 {
@@ -22,11 +24,12 @@ namespace Visual.Controllers
 
         void AddBinding()
         {
-            _nenjectkernel.Bind<IShowTableService>().To<ShowTableService>();
-            _nenjectkernel.Bind<IAddValueTableService>().To<AddValueTableService>();
-            _nenjectkernel.Bind<ICreationService>().To<CreationService>();
+            _nenjectkernel.Bind<IShowingService>().To<ShowingService>();
+            _nenjectkernel.Bind<IAddingService>().To<AddingService>();
+            _nenjectkernel.Bind<ICreatingService>().To<CreatingService>();
+            _nenjectkernel.Bind<IUnitOfWork>().To<UnitOfWork>();
         }
-        protected override IController GetControllerInstance(RequestContext requestContext,Type ControllerType)
+        protected override IController GetControllerInstance(RequestContext requestContext, Type ControllerType)
         {
             return ControllerType == null ? null : (IController)_nenjectkernel.Get(ControllerType);
         }

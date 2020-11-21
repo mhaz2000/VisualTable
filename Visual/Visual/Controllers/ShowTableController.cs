@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Visual.DTOs;
-using Visual.Services.TableShowingService;
+using Common.DTOs;
+using Services.ShowingTableService;
 
 namespace Visual.Controllers
 {
     public class ShowTableController : Controller
     {
         //A service for showing table operations.
-        private readonly IShowTableService _servcie;
+        private readonly IShowingService _servcie;
 
         //maje an instance of our service
-        public ShowTableController(IShowTableService service)
+        public ShowTableController(IShowingService service)
         {
             _servcie = service;
         }
@@ -22,14 +22,14 @@ namespace Visual.Controllers
         // GET: Show full Table
         public ActionResult ShowFullTable()
         {
-            return View(new ShowTableDto(_servcie.GetAllTableNames()));
+            return View(new ShowTableDto(_servcie.GetTableNames()));
         
         }
          
         [HttpPost]
         public ActionResult ShowFullTable([Bind(Include = "ChosenName")] ShowTableDto table)
         {
-            table.TableNames = _servcie.GetAllTableNames();
+            table.TableNames = _servcie.GetTableNames();
             table = _servcie.GetFullTable(table);
             return View(table);
         }
