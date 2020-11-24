@@ -11,12 +11,6 @@ namespace Data.Repositories.TableCreation
 {
     class TableCreating : Repository<Table>, ITableCreating
     {
-        private VisualDB _db;
-
-        public TableCreating()
-        {
-            _db = new VisualDB();
-        }
         // Adds new table into data base.
         public void AddNewTable(string tableName, string[] FieldNames, FieldTypes[] fieldTypes)
         {

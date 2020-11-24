@@ -138,10 +138,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\FieldName.cs" />
-    <Compile Include="Models\FieldValue.cs" />
-    <Compile Include="Models\Log.cs" />
-    <Compile Include="Models\Table.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

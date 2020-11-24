@@ -9,7 +9,7 @@ namespace Data.Repositories
 {
     class Repository<T> : IRepository<T> where T : class
     {
-        private VisualDB _db;
+        protected VisualDB _db;
 
         public Repository()
         {

@@ -10,11 +10,6 @@ namespace Data.Repositories.TableAddingValue
 {
     class AddingValue : Repository<FieldValue>, IAddingValue
     {
-        private VisualDB _db;
-        public AddingValue()
-        {
-            _db = new VisualDB();
-        }
         //Add value to table.
         public void AddValueToTable(string[] tableValues, string tableName)
         {

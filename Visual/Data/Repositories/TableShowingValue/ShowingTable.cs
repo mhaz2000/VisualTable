@@ -10,12 +10,7 @@ namespace Data.Repositories.TableShowingValue
 {
     class ShowingTable : Repository<Table>, IShowingTable
     {
-        private VisualDB _db;
-        //make an instance of our data base
-        public ShowingTable()
-        {
-            _db = new VisualDB();
-        }
+        
         public List<string[]> GetFullTable(string tableName)
         {
             List<string[]> Values = new List<string[]>();
