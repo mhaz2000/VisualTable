@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace Data.Repositories
 {
-    public interface IAddingValue:IRepository<FieldValue>
+    public interface IAddingValue:IRepository<FieldName>
     {
-        Guid[] GetAllFieldNamesID(string tableName);
-        List<string> GetAllFieldNames(string tableName);
         void AddValueToTable(string[] tableValues, string tableName);
 
     }

@@ -1,5 +1,6 @@
 ﻿using Common.DTOs;
 using Data.DataUnitOfWork;
+using Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,13 +25,14 @@ namespace Services.AddValueToTableService
         //Gets Fields name.
         public List<string> GetTableFieldNames(AddValueDto table)
         {
-            return _unitOfWork.AddingValue.GetAllFieldNames(table.ChosenName);
+            return _unitOfWork.AddingValue.GetAll().Where(t=>t.Table.TableName==table.ChosenName).Select(t=>t.Name).ToList();
         }
 
         //Gets all table names.
         public List<string> GetTableNames()
         {
-            return _unitOfWork.AddingValue.GetAllTableName();
+            var names=_unitOfWork.TableCreating.GetAll();
+            return names.Select(s => s.TableName).Distinct().ToList();
         }
     }
 }

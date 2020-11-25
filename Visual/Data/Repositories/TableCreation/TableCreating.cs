@@ -11,6 +11,10 @@ namespace Data.Repositories.TableCreation
 {
     class TableCreating : Repository<Table>, ITableCreating
     {
+        public TableCreating(VisualDB db) : base(db)
+        {
+
+        }
         // Adds new table into data base.
         public void AddNewTable(string tableName, string[] FieldNames, FieldTypes[] fieldTypes)
         {
@@ -18,15 +22,19 @@ namespace Data.Repositories.TableCreation
             Log log = new Log();
             table.Log = log;
 
-            _db.Logs.Add(log);
-            _db.Tables.Add(table);
+
+            Add<Log>(log);
+            //_db.Logs.Add(log);
+            Add(table);
+            //_db.Tables.Add(table);
 
             for (int i = 0; i < FieldNames.Length; i++)
             {
-                _db.FieldNames.Add(new FieldName(FieldNames[i], fieldTypes[i], table.TableId));
+                Add<FieldName>(new FieldName(FieldNames[i], fieldTypes[i], table.TableId));
+                //_db.FieldNames.Add(new FieldName(FieldNames[i], fieldTypes[i], table.TableId));
             }
 
-            _db.SaveChanges();
+            Save();
         }
     }
 }

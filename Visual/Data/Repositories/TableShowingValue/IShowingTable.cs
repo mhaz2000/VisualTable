@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Data.Repositories
 {
-    public interface IShowingTable:IRepository<Table>
+    public interface IShowingTable:IRepository<FieldValue>
     {
         List<string[]> GetFullTable(string tableName);
     }

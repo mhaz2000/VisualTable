@@ -25,7 +25,7 @@ namespace Services.ShowingTableService
         //Gets all table name.
         public List<string> GetTableNames()
         {
-            return _unitOfWork.ShowingTable.GetAllTableName();
+            return _unitOfWork.ShowingTable.GetAll().Select(s=>s.FieldName.Table.TableName).Distinct().ToList();
         }
     }
 }

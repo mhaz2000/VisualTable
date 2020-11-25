@@ -23,7 +23,7 @@ namespace Services.CreatingTableService
 
         public TableCreatingDto CheckNewTable(TableCreatingDto table)
         {
-            var names = _unitOfWork.TableCreating.GetAllTableName();
+            var names = _unitOfWork.TableCreating.GetAll().Select(t=>t.TableName);
 
             //Checks if the given name is repetitive or not.
             if (names.Where(w => w.Contains(table.tableName)).Any())

@@ -8,30 +8,24 @@ using System.Threading.Tasks;
 
 namespace Data.Repositories.TableAddingValue
 {
-    class AddingValue : Repository<FieldValue>, IAddingValue
+    class AddingValue : Repository<FieldName>, IAddingValue
     {
+        public AddingValue(VisualDB db):base(db)
+        {
+
+        }
         //Add value to table.
         public void AddValueToTable(string[] tableValues, string tableName)
         {
             Guid rowID = Guid.NewGuid();
-            Guid[] FieldsIDs = GetAllFieldNamesID(tableName);
+            Guid[] FieldsIDs = GetAll().Where(w=>w.Table.TableName==tableName).Select(t=>t.FieldNameId).ToArray();
 
             for (int i = 0; i < tableValues.Length; i++)
             {
-                _db.FieldValues.Add(new Models.FieldValue(tableValues[i], FieldsIDs[i], rowID));
+                Add<FieldValue>(new Models.FieldValue(tableValues[i], FieldsIDs[i], rowID));
+                //_db.FieldValues.Add(new Models.FieldValue(tableValues[i], FieldsIDs[i], rowID));
             }
-            _db.SaveChanges();
-        }
-
-        //Get all field names in a specific table.
-        public List<string> GetAllFieldNames(string tableName)
-        {
-            return _db.FieldNames.Where(w => w.Table.TableName == tableName).Select(s => s.Name).ToList();
-        }
-        //gets all field names id in specific table.
-        public Guid[] GetAllFieldNamesID(string tableName)
-        {
-            return _db.FieldNames.Where(w => w.Table.TableName == tableName).Select(s => s.FieldNameId).ToArray();
+            Save();
         }
     }
 }

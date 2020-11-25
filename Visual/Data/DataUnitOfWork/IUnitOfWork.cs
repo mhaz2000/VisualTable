@@ -1,4 +1,5 @@
-﻿using Data.Repositories;
+﻿using Data.Models;
+using Data.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace Data.DataUnitOfWork
 {
     public interface IUnitOfWork : IDisposable
     {
+        IRepository<Table> TableRepo { get; }
         ITableCreating TableCreating { get; }
         IAddingValue AddingValue { get; }
         IShowingTable ShowingTable { get; }
