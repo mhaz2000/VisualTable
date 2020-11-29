@@ -22,7 +22,7 @@ namespace Visual.Controllers
 
         public ActionResult AddValue()
         {
-            return View(new AddValueDto(_service.GetTableNames()));
+            return View(_service.GetTableNames());
         }
 
         [HttpPost]
@@ -33,9 +33,7 @@ namespace Visual.Controllers
                 return View();
             else if (table.FieldValues is null)
             {
-                table.FieldNames = _service.GetTableFieldNames(table);
-                table.TableNames = _service.GetTableNames();
-                return View(table);
+                return View(_service.TableStructure(table));
             }
 
             _service.AddValueToTable(table);

@@ -13,7 +13,7 @@ namespace Data.Repositories
 {
     class Repository<T> : IRepository<T> where T : class
     {
-        protected VisualDB _db;
+        private VisualDB _db;
         private DbSet<T> _entity;
 
         public Repository(VisualDB db)

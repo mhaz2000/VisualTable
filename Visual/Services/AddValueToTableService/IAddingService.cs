@@ -10,7 +10,8 @@ namespace Services.AddValueToTableService
     public interface IAddingService
     {
         void AddValueToTable(AddValueDto table);
-        List<string> GetTableNames();
+        AddValueDto GetTableNames();
         List<string> GetTableFieldNames(AddValueDto table);
+        AddValueDto TableStructure(AddValueDto table);
     }
 }

@@ -18,14 +18,16 @@ namespace Services.ShowingTableService
         //gets a full table by a given name.
         public ShowTableDto GetFullTable(ShowTableDto table)
         {
-            table.Values = _unitOfWork.ShowingTable.GetFullTable(table.ChosenName);
-            return table;
+            var newTable = GetTableNames();
+            newTable.Values = _unitOfWork.ShowingTable.GetFullTable(table.ChosenName);
+            return newTable;
         }
 
         //Gets all table name.
-        public List<string> GetTableNames()
+        public ShowTableDto GetTableNames()
         {
-            return _unitOfWork.ShowingTable.GetAll().Select(s=>s.FieldName.Table.TableName).Distinct().ToList();
+            ShowTableDto table = new ShowTableDto(_unitOfWork.ShowingTable.GetAll().Select(s => s.FieldName.Table.TableName).Distinct().ToList());
+            return table;
         }
     }
 }

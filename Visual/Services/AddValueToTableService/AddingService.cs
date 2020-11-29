@@ -25,14 +25,24 @@ namespace Services.AddValueToTableService
         //Gets Fields name.
         public List<string> GetTableFieldNames(AddValueDto table)
         {
+
             return _unitOfWork.AddingValue.GetAll().Where(t=>t.Table.TableName==table.ChosenName).Select(t=>t.Name).ToList();
         }
 
         //Gets all table names.
-        public List<string> GetTableNames()
+        public AddValueDto GetTableNames()
         {
-            var names=_unitOfWork.TableCreating.GetAll();
-            return names.Select(s => s.TableName).Distinct().ToList();
+            var names = _unitOfWork.TableCreating.GetAll();
+            AddValueDto addValueDto = new AddValueDto(names.Select(s => s.TableName).Distinct().ToList());
+            return addValueDto;
+        }
+
+        public AddValueDto TableStructure(AddValueDto table)
+        {
+            var newTable = GetTableNames();
+            table.TableNames = newTable.TableNames;
+            table.FieldNames = GetTableFieldNames(table);
+            return table;
         }
     }
 }

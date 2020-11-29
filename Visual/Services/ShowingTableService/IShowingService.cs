@@ -10,7 +10,7 @@ namespace Services.ShowingTableService
     public interface IShowingService
     {
         ShowTableDto GetFullTable(ShowTableDto table);
-        List<string> GetTableNames();
+        ShowTableDto GetTableNames();
 
     }
 }

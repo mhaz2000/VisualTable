@@ -28,11 +28,11 @@ namespace Services.CreatingTableService
             //Checks if the given name is repetitive or not.
             if (names.Where(w => w.Contains(table.tableName)).Any())
             {
-                table.Message = Message.RepetitiveTableName();
+                table.Message = Message.RepetitiveTableName;
                 table.FieldNumber = 0;
                 return table;
             }
-            table.Message = Message.AcceptableName();
+            table.Message = Message.AcceptableName;
 
             return table;
         }

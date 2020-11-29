@@ -22,14 +22,13 @@ namespace Visual.Controllers
         // GET: Show full Table
         public ActionResult ShowFullTable()
         {
-            return View(new ShowTableDto(_servcie.GetTableNames()));
+            return View(_servcie.GetTableNames());
         
         }
          
         [HttpPost]
         public ActionResult ShowFullTable([Bind(Include = "ChosenName")] ShowTableDto table)
         {
-            table.TableNames = _servcie.GetTableNames();
             table = _servcie.GetFullTable(table);
             return View(table);
         }

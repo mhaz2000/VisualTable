@@ -26,7 +26,7 @@ namespace Visual.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateTable([Bind(Include = "FieldNumber, tableName, FieldTypes, FieldNames")] TableCreatingDto table)
+        public ActionResult CreateTable(TableCreatingDto table)
         {
             if(table.FieldNames is null)
                 return View(_service.CheckNewTable(table));
